@@ -4,7 +4,7 @@ CurrentModule = ProconIO
 
 # ProconIO
 
-Documentation for [ProconIO](https://github.com/lucifer1004/ProconIO.jl).
+Inspired by [proconio-rs](https://github.com/statiolake/proconio-rs), I wrote this package to handle inputs for competitive programming contests.
 
 ```@index
 ```

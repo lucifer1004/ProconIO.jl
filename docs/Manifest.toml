@@ -50,6 +50,11 @@ uuid = "76f85450-5226-5b5a-8eaa-529ad045b433"
 [[deps.Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
+[[deps.MLStyle]]
+git-tree-sha1 = "c4f433356372cc8838da59e3608be4b0c4c2c280"
+uuid = "d8e11817-5142-5d16-987a-aa16d5891078"
+version = "0.4.13"
+
 [[deps.Markdown]]
 deps = ["Base64"]
 uuid = "d6f4376e-aef5-505a-96c1-9c027394607a"
@@ -71,6 +76,7 @@ deps = ["Unicode"]
 uuid = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [[deps.ProconIO]]
+deps = ["MLStyle"]
 path = ".."
 uuid = "14bbafba-0b52-4ec8-8fe0-855204a3b917"
 version = "0.1.0"
