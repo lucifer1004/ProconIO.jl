@@ -18,6 +18,11 @@ end
     types
 end
 
+@as_record struct TypedPair
+    left
+    right
+end
+
 function read_until_whitespace()
     chars = Char[]
     c = read(stdin, Char)
@@ -40,7 +45,7 @@ function parse_type(typ)
         Expr(:tuple, args...) => TypedTuple(parse_type.(args))
         Expr(:vcat, typ) => DynamicVector(parse_type(typ))
         Expr(:vcat, typ, shape) => ShapedArray(parse_type(typ), parse_shape(shape)...)
-        Expr(:call, :(=>), left, right) => Pair{parse_type(left),parse_type(right)}
+        Expr(:call, :(=>), left, right) => TypedPair(parse_type(left), parse_type(right))
         _ => eval(typ)
     end
 end
@@ -48,6 +53,7 @@ end
 function restore_type(typ)
     @match typ begin
         TypedTuple(types) => Tuple{restore_type.(types)...}
+        TypedPair(left, right) => Pair{restore_type(left),restore_type(right)}
         ShapedArray(typ, _, dims) => Array{restore_type(typ),dims}
         DynamicVector(typ) => Vector{restore_type(typ)}
         _ => typ
@@ -99,6 +105,7 @@ function read_value(typ, dict)
         ::Type{String} => readline()
         ::Type{Char} => read_until_whitespace()[1]
         TypedTuple(types) => tuple(map(typ -> read_value(typ, dict), types)...)
+        TypedPair(left, right) => read_value(left, dict) => read_value(right, dict)
         ShapedArray(typ, shape, _) => read_array(typ, shape, dict)
         DynamicVector(typ) => begin
             len = read_value(Int, dict)

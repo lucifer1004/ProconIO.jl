@@ -2,6 +2,15 @@ using ProconIO: @input
 using Test
 
 @testset "ProconIO.jl" begin
+    @testset "Single variable" begin
+        open("fixtures/single.txt") do io
+            redirect_stdin(io) do
+                @input a = Int
+                @test a == 1
+            end
+        end
+    end
+
     @testset "Primitive types" begin
         open("fixtures/primitive.txt") do io
             redirect_stdin(io) do
@@ -20,6 +29,20 @@ using Test
                 @test t
                 @test !f
                 @test pi == 3.14159
+            end
+        end
+    end
+
+    @testset "Pairs" begin
+        open("fixtures/pair.txt") do io
+            redirect_stdin(io) do
+                @input begin
+                    a = Int => Int
+                    b = Int => (Int, Float64)
+                end
+
+                @test a == (1 => 2)
+                @test b == (5 => (3, 4.9))
             end
         end
     end
