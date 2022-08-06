@@ -3,6 +3,9 @@ uuid = "14bbafba-0b52-4ec8-8fe0-855204a3b917"
 authors = ["Gabriel Wu <wuzihua@pku.edu.cn> and contributors"]
 version = "0.1.0"
 
+[deps]
+MLStyle = "d8e11817-5142-5d16-987a-aa16d5891078"
+
 [compat]
 julia = "1.7"
 
