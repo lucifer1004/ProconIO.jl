@@ -70,6 +70,7 @@ using Test
                     c = [(Int, Char); 2]
                     d = [[Int; 2]; 2]
                     e = [Float64;]
+                    f = [[Int;]; 3]
                 end
 
                 @test a == [1, 2, 3]
@@ -77,6 +78,7 @@ using Test
                 @test c == [(1, 'c'), (2, 'b')]
                 @test d == [[2, 2], [3, 3]]
                 @test e == [1.0, 2.5, -1.0]
+                @test f == [[1, 2], [1, 2, 3], [1, 2, 3, 4]]
             end
         end
     end
