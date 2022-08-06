@@ -89,6 +89,7 @@ using Test
                     m = Int
                     mat = [Int; (m, n)]
                     vov = [[Int; m]; n]
+                    vn = [Int; n]
                     vn1 = [Int; n + 1]
                     g = [Int; vn1[2]]
                 end
@@ -97,6 +98,7 @@ using Test
                 @test m == 3
                 @test mat == [1 4; 2 5; 3 6]
                 @test vov == [[1, 2, 3], [4, 5, 6]]
+                @test vn == [1, 2]
                 @test vn1 == [1, 2, 3]
                 @test g == [4, 5]
             end
